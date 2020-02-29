@@ -1,0 +1,295 @@
+{% extends 'front.html.twig' %}
+{% block style %}
+<style>
+    .head{
+        background: linear-gradient(to right, #ffa066 ,#ffe59e);
+        height: 30%;
+        padding-left: 7%;
+        padding-top: 5.5%;
+        position: relative;
+    }
+    .nom{
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 25px;
+    }
+    .responsabilite{
+        color: #ffffff;
+        text-transform: uppercase;
+    }
+       .bg-light{
+           background-color: #F1F1F1;
+       }
+
+       .gallery-container {
+           position: relative;
+           width: 100%;
+           border-width: 10px;
+           border-color: #FFFFFF;
+           border-style: solid;
+           box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.1);
+           cursor: pointer;
+           padding-bottom: 0px;
+       }
+
+    .image {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #FFFFFF;
+        overflow: hidden;
+        width: 100%;
+        height: 0;
+        transition: .3s ease;
+    }
+
+    .gallery-container:hover .overlay {
+        height: 50px;
+    }
+
+    .text {
+        font-family: 'Noto Sans KR', sans-serif;
+        font-size: 18px;
+        line-height: 1.3em;
+        color: #414141;
+        font-weight: bold;
+        text-align: center;
+    .small{
+        font-family: 'Noto Sans KR', sans-serif;
+        font-size: 13px;
+        line-height: 1.3em;
+        color: #999999;
+    }
+    .view-btn{
+        right: 10px;
+        top: 12px;
+        position: absolute;
+        color: #000000;
+        font-weight: 500;
+        border-width: 1px;
+        border-color: #e7e7e7;
+        border-style: solid;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-size: 13px;
+    &:hover{
+         border-color: #333333;
+     }
+    }
+    }
+
+    .carousel-control-next, .carousel-control-prev {
+        width: auto;
+    }
+       .modal-open .modal {
+           overflow-x: hidden;
+           overflow-y: auto;
+           background-color: rgba(0,0,0,0.5);
+       }
+
+    .modal-body {
+        position: relative;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        padding: 0rem;
+    }
+
+    .modal-thumbs{
+        min-height: 150px;
+    label{
+        font-family: 'Noto Sans KR', sans-serif;
+        font-size: 14px;
+        line-height: 1.3em;
+        font-weight: 700;
+        color: #333333;
+        padding-left: 5px;
+    }
+    ul{
+        padding: 0;
+    li{
+        list-style: none;
+        width: 25%;
+        float: left;
+    @media (max-width: 768px) {
+        width: 50%;
+    }
+    .border {
+        display: inline-block;
+        position: relative;
+    }
+    .border::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        box-shadow: inset 0 0 0 0 rgba(255,255,255,.5);
+        transition: box-shadow .1s ease;
+        cursor: pointer;
+    }
+    .border:hover::after {
+        box-shadow: inset 0 0 0 10px rgba(255,255,255,.5);
+    }
+    img {
+        display: block;
+        position: relative;
+    }
+    }
+    }
+    }
+
+    .arrow-left{
+        float: left;
+        left: 0px;
+        padding: 50px;
+        position: fixed;
+        height: 100%;
+    @media (max-width: 768px) {
+        display:none!important;
+    }
+    &:hover{
+         background-color: rgba(0,0,0,0.3);
+     }
+    }
+
+    .carousel-inner{
+        float: left;
+    }
+
+    .arrow-right{
+        float: left;
+        right: 0px;
+        padding: 50px;
+        position: fixed;
+        height: 100%;
+    @media (max-width: 768px) {
+        display: none!important;
+    }
+    &:hover{
+         background-color: rgba(0,0,0,0.3);
+     }
+    }
+</style>
+{% endblock %}
+{% block body %}
+    <div class="head">
+        {% set img = (app.user.photo == null)? '/user/user.jpg' : '/responsable/' ~ app.user.photo %}
+        <img src="{{ img }}" width="11%" style="border: #ffffff solid 5px; border-radius: 100px">
+        <div class="nom">{{ app.user.client.nom }}</div>
+        <div class="responsabilite">{{ app.user.responabilite }}</div><br>
+    </div>
+        <div class="container-fluid bg-light">
+
+            <h2 style="text-align: center;margin-top: 20px">Menu</h2>
+            <section>
+                {% if app.user|length == 0 %}
+                <a href="{{ path('connexion') }}" class="nav-link"><u>Se connecter</u></a>
+                {% else %}
+                <div class="col-sm-12 col-md-10 offset-md-1">
+                    <div class="row">
+                        <!-- Gallery Item Loop  -->
+                        <div class="col-md-6 col-lg-4 py-4">
+                            <div class="gallery-container">
+                                <a href="{{ path('en_cours') }}" >
+                                <img src="/assets/menurespo/1.png" alt="Alt Name" class="image">
+                                </a><br>
+                                <div>
+                                    <p class="text">
+                                        <span>Projet en cours</span><br>
+                                        <div style="padding-left: 200px;padding-top:20px;">
+                                            <a href="{{ path('en_cours') }}" type="submit" class="btn btn-outline-info">Voir</a>
+                                        </div>
+                                    </p>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  End  -->
+                         <!-- Gallery Item Loop  -->
+                        <div class="col-md-6 col-lg-4 py-4">
+                            <div class="gallery-container">
+                                <a href="{{ path('cvvideo') }}" >
+                                <img src="/assets/menurespo/2.png" alt="Alt Name" class="image">
+                                </a><br>
+                                <div>
+                                    <p class="text">
+                                        <span>Nos CV vidéos</span><br>
+                                        <div style="padding-left: 180px;padding-top:20px;">
+                                            <a href="{{ path('cvvideo') }}" class="btn btn-outline-info">Naviguer</a>
+                                        </div>
+                                    </p>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  End  -->
+                         <!-- Gallery Item Loop  -->
+                        <div class="col-md-6 col-lg-4 py-4">
+                            <div class="gallery-container">
+                                <a href="#" >
+                                <img src="/assets/menurespo/3.png" alt="Alt Name" class="image">
+                                </a><br>
+                                <div>
+                                    <p class="text">
+                                        <span>Notre Pool Talent</span><br>
+                                        <div style="padding-left: 180px;padding-top:20px;">
+                                            <button href="#" class="btn btn-outline-info">Naviguer</button>
+                                        </div>
+                                    </p>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  End  -->
+                         <!-- Gallery Item Loop  -->
+                        <div class="col-md-6 col-lg-4 py-4">
+                            <div class="gallery-container">
+                                <a href="{{ path('entretien') }}" >
+                                <img src="/assets/menurespo/4.png" alt="Alt Name" class="image">
+                                </a><br>
+                                <div>
+                                    <p class="text">
+                                        <span>Nos entretiens diﬀérés</span><br>
+                                        <div style="padding-left: 180px;padding-top:20px;">
+                                            <a href="{{ path('entretien') }}" class="btn btn-outline-info">Naviguer</a>
+                                        </div>
+                                    </p>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  End  -->
+                        <!-- Gallery Item Loop  -->
+                        <div class="col-md-6 col-lg-4 py-4">
+                            <div class="gallery-container">
+                                <a href="#" >
+                                <img src="/assets/menurespo/5.png" alt="Alt Name" class="image">
+                                </a><br>
+                                <div>
+                                    <p class="text">
+                                        <span>Les anciens projets</span><br>
+                                        <div style="padding-left: 200px;padding-top:20px;">
+                                            <button href="#" class="btn btn-outline-info">Voir</button>
+                                        </div>
+                                    </p>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  End  -->
+                   <div>
+                </div>
+                        {% endif %}
+            </section>
+
+
+        </div>
+
+{% endblock %}

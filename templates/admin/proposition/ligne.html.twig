@@ -1,0 +1,121 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offre d'emplois!{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        #background{
+            width: 100%;
+            height: 1220px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #999999;
+            opacity: 0.5;
+            z-index: 1;
+            /*display: none;*/
+            visibility: hidden;
+        }
+        .container{
+            position: absolute;
+        }
+        #pdf{
+            position: absolute;
+            width: 99%;
+            z-index: 2;
+            /*display: none;*/
+            visibility: hidden;
+        }
+        #x{
+            float: left;
+            color: #999999;
+            width: 100%;
+            padding-left: 5px;
+            border-radius: 2px;
+            background-color: #292929;
+            opacity: 0.5;
+        }
+        #x:hover{
+            float: left;
+            color: white;
+            width: 100%;
+            padding-left: 5px;
+            border-radius: 2px;
+            background-color: #292929;
+        }
+
+    </style>
+{% endblock %}
+{% block body %}
+    <div id="background"></div>
+    <div id="pdf">
+        <a href="" onclick="fus()" id="x">X</a>
+        <iframe id="frame" width="100%" height="900px" align="middle" allow="microphone *; autoplay *; microphone"></iframe>
+    </div>
+{#    <div class="container">#}
+{#        <h1>Les candidats</h1>#}
+{#        <table class="table table-striped">#}
+{#            <thead>#}
+{#            <tr>#}
+{#                <th>Nom</th>#}
+{#                <th>Date de naissance</th>#}
+{#            </tr>#}
+{#            </thead>#}
+{#            <tbody>#}
+{#            {% for c in candidat %}#}
+{#                <tr>#}
+{#                    <td>{{ c.nom }}</td>#}
+{#                    <td>{{ c.dateNaissance | date('d-m-Y' ,"Europe/Paris") }}</td>#}
+{#                    <td>#}
+{#                        <a href="#" class="btn btn-info ajout">Ajouet</a>#}
+{#                        <a href="{{ path('show_candidat', {id: c.id}) }}" class="btn btn-outline-info">Voir</a>#}
+{#                    </td>#}
+{#                </tr>#}
+{#            {% endfor %}#}
+{#            </tbody>#}
+{#        </table>#}
+{#    </div>#}
+    <h2>Ajouter des ligne sur le proposition {{ prop.id }}</h2>
+    <div class="row">
+        <div class="col-6">
+            {{ form_start(form) }}
+            {{ form_row(form.candidat) }}
+            {{ form_row(form.CV) }}
+            {{ form_row(form.LM) }}
+            {{ form_row(form.cls) }}
+            <input type="submit" class="btn btn-primary" value="Ajouter">
+            {{ form_end(form) }}
+        </div>
+        <div class="col-6" style="background-color: white">
+            <h2>Les proposition</h2>
+            <table class="table">
+                <tr><th>Candidat</th><th>CV</th></tr>
+                {% if prop.lignePropositions|length == 0 %}
+                <tr><td>Aucun proposition pour le moment</td></tr>
+                {% else %}
+                {% for p in prop.lignePropositions|reverse %}
+                    {% set nom=p.candidat==null?'Autre candidat':p.candidat.nom %}
+                    <tr><td>{{ nom }}</td><td><a href="#" id="show" onclick="test('/uploads/{{ p.cv | raw }}')" class="btn btn-info">Lire CV</a></td></tr>
+                {% endfor %}
+                {% endif %}
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $('.ajout').click(function () {
+            console.log("mety");
+        })
+        function test(url) {
+            document.getElementById('background').style.visibility='visible';
+            document.getElementById('frame').src=url;
+            document.getElementById('pdf').style.visibility='visible';
+        }
+        function fus() {
+            document.getElementById('background').style.visibility='hidden';
+            document.getElementById('pdf').style.visibility='hidden';
+        }
+    </script>
+    </script>
+{% endblock %}

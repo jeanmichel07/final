@@ -1,0 +1,235 @@
+{% extends 'front.html.twig' %}
+
+{% block style %}
+<style>
+  .rotate div img {
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+ 
+.rotate div:hover img {
+  -webkit-transform: rotate(-9deg);
+  transform: rotate(-9deg);
+}
+.slide24 div img {
+  margin-left: 0px;
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+}
+.slide24 div:hover img {
+  margin-left: -30px;
+}
+.btn-2{
+    border-radius: 50px;
+    padding: 10px 40px;
+    color:#ffde59;
+    font-weight: bold;
+    font-family:'Arimo', sans-serif;
+    background: #545454;
+    border:2px solid #ffde59;
+  }
+  .btn-2:hover{
+    border-radius: 50px;
+    padding: 10px 40px;
+    color: #545454;
+    font-weight: bold;
+    font-family:'Arimo', sans-serif;
+    background: linear-gradient(#ffde59,#ffbd59,#ff914d);
+    border:2px solid #545454;
+  }
+</style> 
+{% endblock %}
+
+{% block body %}
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/assets/images/service/inbound/70.jpeg" class="d-block w-100" alt="">
+      <div class="carousel-caption d-none d-md-block" style="bottom: 200px;text-align: center;">
+      	<div>
+      		<h4 style="color: #ffffff; 
+                    font-weight: bold;
+                    font-family: 'Raleway', sans-serif;
+                     text-align: left;
+                    font-size: 70px">Inbound Recruiting
+          </h4>
+          <p  style="color:#ffffff;
+                    font-size: 25px;
+                    text-align: left;
+                    font-family: 'Raleway', sans-serif;">Comment venir en soi les talents</p>
+      	</div>
+      </div>
+    	</div>
+    </div>	
+</div>
+
+<section class="container-fluid" style="padding-top: 100px; padding-bottom: 100px;background:#f5f5f5 ">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-ml-12 col-sm-12 col-xs-12">
+        <h2 style="color: #545454;
+                  font-weight: bold;
+                  text-align: center;
+                  font-family: 'Raleway', sans-serif;
+                  font-size: 45px;"><strong> Inbound Recruiting </strong> </h2>
+        <h3 data-aos="zoom-in"  data-aos-easing="linear" data-aos-duration="600"
+            style="color: #ff914d;
+                  text-align: center;
+                  font-family: 'Raleway', sans-serif;
+                  padding-top: 50px;
+                  font-size: 25px;"><strong>Comment venir en soi les talents </strong>  
+        </h3>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 50px;">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <p data-aos="fade-right" data-aos-easing="linear" data-aos-duration="900"
+          style="text-align: center; font-family: 'Arimo', sans-serif;font-size: 20px;">
+          L'inbound Recruiting fonctionne<br> sur un 
+          principe comparable à <br>
+          l'inbound marketing.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <p data-aos="fade-left" data-aos-easing="linear" data-aos-duration="900"
+            style="text-align: center;font-family: 'Arimo', sans-serif;font-size: 20px;">
+          L'inbound Recruiting est une solution <br>
+          imaginative et innovante pour être<br> 
+          remarqué par des candidats très qualifié
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container-fluid" style="padding-top: 100px;padding-bottom: 80px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h2 style="color:#393838;
+                font-family: 'Raleway', sans-serif;
+                font-weight: bold;
+                text-align: center;
+                font-size: 40px;
+                "><strong>LES AVANTAGES</strong>  
+      </h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="text-align: center;padding-top: 50px;">
+        <div style="color: #222222;
+                font-family:'Raleway', sans-serif;
+                font-size: 22px;
+                text-align: justify;">
+          <p data-aos="fade-right">●&nbsp; Devancer vos concurrents dans la guerre dans la &nbsp;&nbsp;&nbsp;&nbsp; guerre des talents<br></p>
+          <p data-aos="fade-right" data-aos-duration="800">●&nbsp; Baisser le coût d’acquisition des candidats<br></p>
+          <p data-aos="fade-right" data-aos-duration="900">●&nbsp; Réduire le délai de recrutement<br></p>
+          <p data-aos="fade-right" data-aos-duration="1000">●&nbsp; Créer un vivier de talents<br></p>
+          <p data-aos="fade-right" data-aos-duration="1100">●&nbsp; Sécuriser un recrutement et réduire son turn-over
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="rotate">
+          <div data-aos="fade-left" data-aos-duration="800">
+            <img src="/assets/images/service/inbound/66.jpeg" style="width: 100%; height: 300px; text-align: center;padding-top: 50px;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container-fluid" style="padding-top: 100px;padding-bottom: 80px;background: linear-gradient(#ffbd59,#ff914d);">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h2 style="color:#393838;
+                font-family: 'Raleway', sans-serif;
+                font-weight: bold;
+                text-align: center;
+                padding-bottom: 40px;
+                font-size: 40px; ">NOS PRESTATIONS
+        </h2>
+      </div>
+    </div>
+    <div class="row" style="text-align: center;">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="slide24">
+              <div  data-aos="fade-right" data-aos-duration="900">
+                <img src="/assets/images/service/inbound/1.png" style="max-width: 100%;height: 150px;">
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="slide24">
+              <div  data-aos="fade-right" data-aos-duration="700">
+                <img src="/assets/images/service/inbound/2.png" style="max-width: 100%;height: 150px;">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="slide24">
+              <div  data-aos="fade-right" data-aos-duration="1000">
+                <img src="/assets/images/service/inbound/3.png" style="max-width: 100%;height: 150px;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="text-align: center;">
+        <div style="color: #222222;
+                font-family: 'Raleway', sans-serif;
+                font-size: 22px;
+                text-align: justify;">
+          <p data-aos="zoom-in" data-aos-duration="800"><strong>
+            Nous accompagnons les entreprises dans chaque étapes de l'inbound recruiting:<br></strong>
+          </p>
+          <p data-aos="fade-left" data-aos-duration="900">
+            ●&nbsp; la définition de la stratégie inbound recruiting<br>
+          </p>
+          <p data-aos="fade-left" data-aos-duration="900">
+            ●&nbsp; le déploiement de la stratégie<br>
+          </p>
+          <p data-aos="fade-left" data-aos-duration="1000">
+            ●&nbsp; la création et production des contenus<br>
+          </p>
+          <p data-aos="fade-left" data-aos-duration="1000">
+            ●&nbsp; la distribution des contenus sur les plateformes<br>&nbsp;&nbsp;&nbsp; digitales.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container-fluid" style="background: linear-gradient(#ffde59,#ffbd59);padding-top: 60px;padding-bottom: 60px">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div style="text-align: center;font-family:'Raleway', sans-serif; ">
+          <h2 style="color: #545454;font-size: 40px;"
+            data-aos="fade-right" data-aos-duration="800">
+            <strong>Pour plus d'information</strong>
+          </h2>
+          <h3 style="color: #fff;padding-top: 20px;" 
+            data-aos="fade-left" data-aos-duration="900">
+            <strong>CONTACTEZ-NOUS</strong>
+          </h3> 
+        </div>
+        <div  style="padding-top: 20px;text-align: center;font-size: 20px;"
+            data-aos="fade-right" data-aos-duration="1000">
+            <a href="{{ path('contact') }}">
+              <button type="button" class="btn-2 ">
+                <strong>CONTACT</strong>
+              </button>
+            </a>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

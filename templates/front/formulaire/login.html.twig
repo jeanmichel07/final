@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="assets/css/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/css/owl.theme.default.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Arimo:400,700|Lora:400,700|Raleway:400,700|Roboto:400,700&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+        margin:0;
+        padding: 0;
+        background-size: cover;
+     font-family: 'Raleway', sans-serif;
+        background:url(assets/images/body2.jpg);
+    }
+    .titre{
+        text-align: center;
+        padding-top: 60px;
+    }
+    .titre h1{
+        margin: 0;
+        padding: 0;
+        color: #090841;
+        text-transform: uppercase;
+        font-size: 36px;
+        font-weight: bold;
+    }
+    .container{
+        width: 50%;
+        height: 440px;
+        background: #fff;
+        padding-top: 17px;
+        border:2px solid #f4960e;
+        box-shadow: 0 15px 40px rgba(0,0,0,.5);
+    }
+    .container .left{
+        float: left;
+        width: 50%;
+        height: 400px;
+       background: url(assets/images/bodybg.jpg);
+        background-size: cover;
+        box-sizing: border-box;
+    }
+    .container .right{
+        float: right;
+        width: 50%;
+        height: 400px;
+        box-sizing: border-box;
+    }
+    .formBox{
+        width: 100%;
+        padding: 40px 40px;
+        box-sizing: border-box;
+        height: 400px;
+        background: #fff;
+    }
+    .formBox p{
+        margin: 0;
+        padding: 0;
+        font-weight: bold;
+        color: #f4960e;
+    }
+    .formBox input{
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .formBox input[type="text"],
+    .formBox input[type="Password"]
+    {
+        border: none;
+        border-bottom:2px solid #f4960e;
+        outline: none;
+        height: 40px; 
+    }
+    .formBox input[type="text"]:focus,
+    .formBox input[type="Password"]:focus
+    {
+        border-bottom:2px solid #090841;
+    }
+    .formBox input[type="submit"]{
+        border: none;
+        outline: none;
+        height: 40px;
+        background:#090841;
+        color: #fff;
+        cursor: pointer;
+    }
+    .formBox input[type="submit"]:hover{
+        background: #f4960e;
+    }
+    .formBox .opt p{
+        color: #090841;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .formBox .opt a{
+        color: blue;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .formBox .opt a:hover{
+        color: #f4960e;
+    }
+        
+     .error{
+            height: 45px;
+            width: 80%;
+            color: red;
+            background-color: red;
+            padding: 12px;
+        }
+        input{
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <div class="titre">
+        <h1>CONNEXION</h1>
+        {% if error %}
+            <div class="error">
+                {{ error.messageKey | trans(error.messageData, 'security') }}
+            </div>
+            <br>
+
+        {% endif %}
+    </div>
+    <div class="container">
+        <div class="left">
+            
+        </div>
+        <div class="right">
+            <div class="formBox">
+                <form method="post" action="{{ path('connexion') }}">
+                    <p>Pseudo</p>
+                    <input type="text" name="_username" required placeholder="Votre Pseudo" value="{{ lastUsername }}" name="" placeholder="Entrer votre Pseudo">
+                    <p>Mot de Passe</p>
+                    <input required class="input-mini" type="password" name="_password" placeholder="Votre mot de passe">
+                    <input type="submit" name="" value="connecter">
+                    <div class="opt">
+                        <p style="padding-bottom: 7px;">Pour vous s'inscrir entant que <b style="color: #f4960e;">Candidat</b> <a href="{{ path('inscription_candidat') }}">cliquer ici</a></p>
+                        <p>Pour vous s'inscrir entant que <b style="color: #f4960e;">Coopteur</b> <a href="#">cliquer ici</a></p>
+                    </div>
+                </form> 
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+

@@ -1,0 +1,153 @@
+{% extends 'front.html.twig' %}
+
+{% block style %}
+    <style>
+ .btn-2{
+    border-radius: 50px;
+    padding: 10px 40px;
+    color:#ffde59;
+    font-weight: bold;
+    font-family:'Arimo', sans-serif;
+    background: #545454;
+    border:2px solid #ffde59;
+  }
+  .btn-2:hover{
+    border-radius: 50px;
+    padding: 10px 40px;
+    color: #545454;
+    font-weight: bold;
+    font-family:'Arimo', sans-serif;
+    background: linear-gradient(#ffde59,#ffbd59,#ff914d);
+    border:2px solid #545454;
+  }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/assets/images/service/cvvideo/43.jpg" class="d-block w-100" alt="">
+      <div class="carousel-caption d-none d-md-block" style="bottom: 200px;text-align: center;">
+        <div>
+            <h4 style="color: #ffffff; 
+                    font-weight: bold;
+                    font-family: Raleway Heavy;
+                    margin-right:270px;
+                    font-size: 80px">CV Vidéo
+          </h4>
+          <p style="color:#ffffff;
+                    font-size: 30px;
+                    margin-right:200px;
+                    margin-top: 30px">Entrez dans l'ère du recrutement 2.0</p>
+        </div>
+      </div>
+        </div>
+    </div>  
+</div>
+
+<section class="container-fluid" style="padding-top:100px;padding-bottom:80px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h2 style="font-family:'Raleway', sans-serif; 
+                  color:#545454;
+                  font-weight: bold;
+                  font-size: 45px;
+                  text-align:center;
+                   padding-bottom:30px;"> <strong>CV Vidéo</strong> 
+        </h2>
+        <h3 data-aos="zoom-in"  data-aos-duration="600" 
+            style="color: #ff914d;
+                  font-family: 'Arimo', sans-serif;
+                  text-align: center;
+                  padding-bottom:30px;">ENTREZ DANS L'ERE DU RECRUTEMENT 2.0</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <h4 data-aos="fade-right" data-aos-duration="800" 
+            style="font-weight: bold;padding-bottom: 20px;text-align: center;">Pour les candidats</h4>
+        <div style="font-size: 20px;text-align: justify;" >
+        <p data-aos="fade-right" data-aos-duration="1000">
+          Le CV Vidéo est un moyen de se démarquer de la concurrence et d'aboutir facilement à un entretien d'embauche.
+        </p>
+        <p data-aos="fade-right" data-aos-duration="1400">
+          <strong> Corban propose:</strong><br>
+          - La conception et le tournage de votre CV Vidéo.<br>
+          - Sa diffusion auprès des potentiels recruteurs.
+        </p>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <h4 data-aos="fade-left" data-aos-duration="800"  
+            style="font-weight: bold;padding-bottom: 20px;text-align: center;">Pour les recruteurs</h4>
+        <div style="font-size: 20px;text-align: justify;" >
+          <p data-aos="fade-left" data-aos-duration="1000">
+            Le CV Vidéo vous permet de faire immédiatement une différenciation du profil du candidat recherché et donne une vision plus globale du candidat dans des conditions idéales.
+          </p>
+          <p data-aos="fade-left" data-aos-duration="1400">
+            Corban propose:<br>
+            - L'accès à notre base de donnée de CV Vidéos triés sur le volet.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container-fluid" style="background-color: #f5f5f5; padding: 80px 80px">
+  <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <h2 style="font-family:'Raleway', sans-serif; 
+                  color:#545454;
+                  font-weight: bold;
+                  font-size: 45px;
+                  text-align:center;
+                   padding-bottom:30px;">Tous les CV Vidéos</h2>
+        </div>
+      </div>
+      <div class="row" id="cvvideos" style="text-align: center;">
+          {% if video|length != 0 %}
+              {% for v in video %}
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div style="background-color:#2d2d2c; width:100%;text-align: center">
+                        <div><a href="{{ path('show_video',{id: v.id}) }}"><video poster="/assets/img/video2.png" src="{{ v.video }}"width="100%" height="300px"></video><p style="color:#fff;background-color:#ffbd59;padding-bottom:10px;padding-top:10px;font-size:20px;"><strong>{{ v.description}}</strong></p></a></div></div></div>
+              {% endfor %}
+          {% else  %}
+              <p>Aucun cv vidéo pour l'instant</p>
+          {% endif %}
+      </div>
+  </div>
+</section>
+
+<section class="container-fluid" style="background: linear-gradient(#ffde59,#ffbd59);padding-top: 60px;padding-bottom: 60px">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div style="text-align: center;font-family:'Raleway', sans-serif; ">
+          <h2 style="color: #545454;font-size: 40px;"
+            data-aos="fade-right" data-aos-duration="800">
+            <strong>Pour plus d'information</strong>
+          </h2>
+          <h3 style="color: #fff;padding-top: 20px;" 
+            data-aos="fade-left" data-aos-duration="900">
+            <strong>CONTACTEZ-NOUS</strong>
+          </h3> 
+        </div>
+        <div  style="padding-top: 20px;text-align: center;font-size: 20px;"
+            data-aos="fade-right" data-aos-duration="1000">
+            <a href="{{ path('contact')}}">
+              <button type="button" class="btn-2 ">
+                <strong>CONTACT</strong>
+              </button>
+            </a>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

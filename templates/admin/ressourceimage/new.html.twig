@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>Ajout Ressource</h2>
+
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-md-6">{{ form_row(form.type) }}</div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-6">{{ form_row(form.titre) }}</div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-6">{{ form_row(form.image) }}</div>
+
+    </div>
+    {{ form_widget(form) }}
+    <button class="btn btn-success">Ajouter</button>
+    {{ form_end(form) }}
+
+{% endblock %}

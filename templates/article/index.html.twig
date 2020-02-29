@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block body %}
+    <h2><b>LISTE DES ARTICLES</b></h2><hr>
+    <table class="table table-striped">
+        <a href="{{ path('article_new') }}" class="text-left">
+            <div class="btn btn-primary">Ajouter un article</div>
+        </a>
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Date de creation</th>
+                <th>Status</th>
+                <th>Validation</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set status = "" %}
+            {% for article in articles %}
+                {% set status = article.status %}
+                <tr>
+                    <td>{{ article.titre }}...</td>
+                    <td>{{ article.createdAt | date('d/m/Y') }}, {{article.createdAt | date('H:i') }}</td>
+                    <td>{{ article.status }}</td>
+                    <td>
+                        <button type="button" onclick="article({{article.id}})" class="btn btn-primary" data-toggle="modal" data-target="#modaleArticle">
+                            validation
+                        </button>
+                    </td>
+                    <td>
+                        <a href="{{path('article_show',{id: article.id})}}" class="btn btn-info"><i class="material-icons">visibility</i></a>
+                        <a href="{{ path('update_article',{id: article.id}) }}" class="btn btn-primary"><i class="material-icons">create</i></a>
+                        <a href="#" onclick="delete_article({{ article.id }})" class="btn btn-danger"><i class="material-icons">clear</i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- Modal -->
+    <div class="modal fade" id="modaleArticle" tabindex="-1" role="dialog" aria-labelledby="modaleArticle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Validation de l'article</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="content_article">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-primary">Valider article</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function delete_article(id) {
+            if (confirm("Voulez vous vraiment supprimer cet Article ?")) {
+                window.location = '/delete/article/' + id;
+                console.log("ok");
+            }
+            else {
+                alert("L'enregistrement n'a pas été supprimé.");
+            }
+        }
+
+        var article = function (id) {
+            $.ajax({
+                type: 'POST',
+                url: '/show_ajax/' + id,
+                beforeSend: function (xhr) {
+                    console.log('sending');
+                },
+                success: function (data, textStatus, jqXHR) {
+                    $("#content_article").html(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("Erreur interne du serveur");
+                }
+            });
+        }
+    </script>
+{% endblock %}

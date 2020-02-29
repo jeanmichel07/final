@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <div class="container">
+        <img style="height:200px;width:400px;text-align: center;"  controls src="http://localhost/corban_ver2/public/offre/{{offre.image }}">
+        <h3>{{ offre.client.nom }}</h3>
+        <b>Poste :</b> {{ offre.titre }}<br>
+
+        <b>Type de contrat :</b> {{ offre.contratType }}<br>
+        <b>Date limite :</b> {{ offre.dateLimite | date('d-m-Y') }}
+        <hr>
+        <b>Activités :</b><br>{{ offre.activite | raw }}
+        <hr>
+        <b>Mission :</b><br>{{ offre.mission | raw}}
+        <hr>
+        <b>Profile :</b><br>{{ offre.profil | raw }}
+        <hr>
+        <b>Référence :</b><br>{{ offre.reference | raw }}<br><br>
+
+
+
+        <a href="javascript:history.back()" class="btn btn-warning">Retour</a>
+    </div>
+
+{% endblock %}

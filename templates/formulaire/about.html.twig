@@ -1,0 +1,37 @@
+{% extends 'front.html.twig' %}
+{% block style %}
+    <style>
+        .ri{
+            width: 50%;
+            height: 550px;
+            padding-top: 100px;
+        }
+        .head{
+            background-color: #cb8402;
+            height: 9em;
+            padding-top: 5.5%;
+        }
+        .img{
+            margin-top: 1.5%;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="head">
+        {% set img = (app.user.photo == null)? '/user/user.jpg' : '/candidat/' ~ app.user.photo %}
+        {#        <div class="nom">{{ app.user.client.nom }}</div>#}
+        <center>
+            <div class="img">
+                <img src="{{ img }}" width="10%" style="height: 110px;border: #9A9A9A solid 2px; border-radius: 100px"><br>
+            </div>
+        </center>
+    </div>
+        <center>
+            <div class="ri">
+                {{ form_start(form) }}
+                {{ form_row(form.contenu) }}
+                <input type="submit" value="Enregistrer" class="btn btn-info">
+                {{ form_end(form) }}
+            </div>
+        </center>
+{% endblock %}

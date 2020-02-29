@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h2><b>LISTE DES RESPONSABLE DE {{ c.nom }}</b></h2><hr>
+        <table class="table table-striped">
+            <a href="{{ path('new_responsable',{id:c.id}) }}" class="text-left">
+                <div class="btn btn-primary">Ajouter une responsable</div>
+            </a>
+            <thead>
+            <tr>
+                <th><b>Responsabilité</b></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for r in responsable %}
+                <tr><td>{{ r.responabilite }}</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+
+{% endblock %}

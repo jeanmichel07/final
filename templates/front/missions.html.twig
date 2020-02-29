@@ -1,0 +1,59 @@
+{% extends 'front.html.twig' %}
+
+{% block style %}
+{% endblock %}
+
+{% block body %}
+<section class="container-fluid" style="background:linear-gradient(#ffde59,#ffbd59);padding-top:70px;padding-bottom: 50px;">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+				<h2 class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="color: #222222; 
+						   font-weight:bold;
+						   font-family: 'Raleway', sans-serif;
+						   text-align: center;
+						   font-size: 35px;
+						   padding-top:35px;"><strong>NOTRE MISSION</strong>
+				</h2>
+				<hr>
+				<div id="mission">
+					<div class="row" style="padding-top: 40px;">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="color:#444041;
+																  font-family:'Raleway', sans-serif;
+																  text-align: justify;
+																  line-height: 1.8;
+																  padding-top: 40px;">
+					<p data-aos="fade-right" data-aos-duration="600">
+					Notre mission est d’offrir  des services de conseil de qualité dans les domaines des RH, recrutement, accompagnement et de l’entrepreneuriat.</p> 
+					<p data-aos="fade-left" data-aos-duration="800">
+					En offrant des prestations de niveau excellent, nous voulons apporter des solutions plus « smater », « faster » et « better » qui impactent de manière significative nos divers clients</p>
+					<p data-aos="fade-right" data-aos-duration="1000">
+					Entant une entreprise chrétienne, nous voulons présenter l’évangile du Christ et honorer Notre Dieu par le travail bienfait et des réalisations exceptionnelles 
+					« Corban » is a hebrew word meaning blessing from God and dedicated back to God.</p> 
+					<p data-aos="fade-left" data-aos-duration="1200">
+					« Performance » communicates our intent to be the go-to problem solver and to help business to be more efficient.</p>
+				</div>
+		</div>
+	</div>
+</section>			
+			
+<script>
+    var xrh=new XMLHttpRequest();
+    xrh.open('GET',"http://127.0.0.1:8000/api/apropos/un/<?php echo $_GET['idmission'] ?>");
+    xrh.onreadystatechange=function () {
+        if (this.readyState === 4 && this.status === 200) {
+            var arr=JSON.parse(xrh.response);
+
+            document.getElementById("mission").innerHTML +='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div style="text-align:center"><video controls src="http://localhost/Corban/application/back/public/uploads/'+arr.video +'" width="720px" height="450px"></video></div>'
+        }
+    };
+    xrh.send()
+</script>
+{% endblock %}

@@ -1,0 +1,52 @@
+security:
+    encoders:
+        App\Entity\Candidat:
+            algorithm: sha1
+        App\Entity\Responsable:
+            algorithm: sha1
+        App\Entity\Coopteur:
+            algorithm: sha1
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        in_memory: { memory: null }
+        candidat_user:
+            entity:
+                class: App\Entity\Candidat
+                property: username
+
+        client_user:
+            entity:
+                class: App\Entity\Responsable
+                property: username
+
+        coopteur_user:
+            entity:
+                class: App\Entity\Coopteur
+                property: username
+        all_users:
+            chain:
+                providers: ['candidat_user', 'client_user','coopteur_user']
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: true
+            provider: all_users
+            form_login:
+                login_path: connexion
+                check_path: connexion
+            logout:
+                path: deconneion
+                target: home
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+         - { path: ^/profile, roles: ROLE_USER }

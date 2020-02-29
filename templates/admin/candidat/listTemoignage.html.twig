@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{#    <div class="container">#}
+{#        <div class="row">#}
+{#            <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModal1" aria-hidden="true">#}
+{#                <div class="modal-dialog modal-lg" role="document">#}
+{#                    <div class="modal-body mb-0 p-0">#}
+{#                        <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">#}
+{#                            <iframe src="https://www.youtube.com/embed/A3PDXmYoF5U" frameborder="0" allowfullscreen></iframe>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="col-lg-4 col-md-12 mb-4">#}
+{#                <a><img class="img-fluid z-depth-1" src="http://placehold.it/300x150"#}
+{#                        alt="video" data-toggle="modal" data-target="#modal1" ></a>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+    <div class="container">
+        <h2>Vidéos de {{ candidat.nom }}</h2>
+        <table class="table table-striped">
+            <a href="{{ path('add_temoignage_candidat', {id: candidat.id}) }}" class="text-left">
+                <div class="btn btn-primary">Ajouter un vidéo</div>
+            </a>
+            <thead>
+            <tr>
+                <th>Type</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for t in temoignage %}
+                <tr>
+                    <td>{{ t.type }} vidéo</td>
+                    <td>
+                        <a href="{{ path('see_video_candidat', {id: t.id}) }}" class="btn btn-outline-primary">Voir</a>
+                        <form action="{{ path('delete_video', {id: t.id}) }}" method="post" style="display: inline-block" onsubmit="return confirm('Etes vous sur?')" >
+                            <input type="hidden" name="_method" value="DELETE" >
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ t.id) }}">
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+

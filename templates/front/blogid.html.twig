@@ -1,0 +1,65 @@
+{% extends 'front.html.twig' %}
+
+{% block style %}
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid" style="padding-top: 150px;padding-bottom: 50px;
+                                     background-image: url(assets/images/service/cvvideo/20.jpg);">
+    <div class="container">
+        <div class="row" id="tem" style="margin-left: 2px;">
+
+        </div>
+        <div id="desc" data-aos="fade-left" data-aos-duration="900" id="desc" style="float: right; width: 600px; text-align: left; margin-top: -350px; margin-right:10px;">
+
+        </div>
+
+        <hr>
+
+        <div class="row" style="text-align: center;color: #fff;font-size: 30px;">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h2 data-aos="fade-left"data-aos-duration="800" style="font-family:'Raleway', sans-serif;
+                  color:#fff;
+                  font-weight: bold;
+                  font-size: 45px;
+                  text-align:center;">
+                    <strong>Tous les BLOG ARTICLES</strong>
+                </h2>
+            </div>
+        </div>
+        <hr>
+        <div class="row" id="blog" style="text-align: center;padding-top: 30px;">
+
+        </div>
+    </div>
+</div>
+
+<script>
+    var xrh=new XMLHttpRequest();
+    xrh.open('GET',"http://127.0.0.1:8000/api/read/document/<?php echo $_GET['idblog'] ?>");
+
+    xrh.onreadystatechange=function () {
+        if (this.readyState === 4 && this.status === 200) {
+            var arr=JSON.parse(xrh.response);
+
+            document.getElementById("tem").innerHTML +='<div style="text-align:center"><embed src="http://127.0.0.1:8000/uploads/'+arr.blog +'"></div>'
+            document.getElementById("desc").innerHTML +='<p style="color:#ffbd59;font-size:20px;">'+arr.type+' BY CORBAN </strong></p><p style="color:#000000;padding-top:10px;font-size:50px;" data-aos="fade-right"data-aos-duration="600" ><strong>'+arr.titre+'</strong></p><p style="color:#fff;padding-bottom:10px;padding-top:15px;font-size:17px;" data-aos="fade-left"data-aos-duration="800">'+arr.description+'</p><div style="text-align:right;padding-top:15px;" ><a href="#"><img src="assets/images/ressource/logoin.png" style="width:5%;height:25px;"></a>&nbsp;&nbsp;&nbsp;<a href="#"><img src="assets/images/ressource/logofb.png" style="width:5%;height:25px;"></a></div></div>'
+        }
+    };
+    xrh.send()
+
+
+    var xhrtt=new XMLHttpRequest();
+    xhrtt.open('GET','http://127.0.0.1:8000/api/read/blog');
+    xhrtt.onreadystatechange=function () {
+        if (this.readyState === 4 && this.status === 200) {
+            var arr=JSON.parse(xhrtt.response);
+
+            for(var i=0;i<arr.length;i++) {
+                document.getElementById("blog").innerHTML +='<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12"><div style="text-align:center"><a href="index.php?page=blogid&idblog='+arr[i].id+'"><embed src="http://127.0.0.1:8000/uploads/'+arr[i].blog +'"><p style="color:#fff;background-color:#ffbd59;padding-bottom:10px;padding-top:10px;font-size:20px;"><strong>'+arr[i].titre+'</strong></p></a></div></div>'
+            }
+        }
+    };
+    xhrtt.send()
+</script>
+{% endblock %}

@@ -1,0 +1,250 @@
+:root {
+  --bleu-1: $primary;
+  --bleu-2: #2b70bb;
+  --bleu-3: #c6e0fc;
+}
+
+html,
+body {
+  min-height: 100vh;
+  background: url("../img/background-01.jpg") no-repeat center;
+  background-size: cover;
+}
+
+.avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: solid 2px #007bff;
+}
+
+.avatar-sm {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.avatar-md {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.avatar-lg {
+  width: 5rem;
+  height: 5rem;
+}
+
+.display-5 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+#preloader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  background-image: url(../img/status.gif);
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10000;
+  -webkit-transition: opacity .5s ease-in-out;
+  transition: opacity .5s ease-in-out;
+}
+
+#preloader.hidden {
+  opacity: 0;
+}
+
+#preloader.finished {
+  display: none;
+}
+
+#form-new-subject {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+#btn-new-subject {
+  height: 100%;
+}
+
+main {
+  padding: 4rem 1rem 2rem;
+}
+
+footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  background: -webkit-gradient(linear, left top, left bottom, from(var(--bleu-2)), to(#007bff));
+  background: linear-gradient(to bottom, var(--bleu-2), #007bff);
+  padding: 1rem;
+  color: #fff;
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #007bff;
+  font-weight: 300;
+}
+
+.content {
+  background: #fff;
+  padding: 1rem .5rem;
+}
+
+.user-card {
+  position: relative;
+  width: 100%;
+}
+
+.user-card .face {
+  width: 100%;
+  height: auto;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.user-card .face img {
+  width: 100%;
+}
+
+.user-card .face.face1 {
+  position: relative;
+  background: #007bff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 1;
+}
+
+.user-card .face.face1 .card-content {
+  opacity: 0.9;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.user-card .face.face1 .card-content h6 {
+  margin: 0.8rem 0 0.3rem;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.user-card .face.face2 {
+  position: relative;
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 1rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.user-card .face.face2 .card-content {
+  margin-top: -100%;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.user-card .face.face2 .card-content p {
+  margin: 0;
+  padding: 0;
+}
+
+.user-card .face.face2 .card-content a {
+  margin: 1rem 0 0;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 900;
+  color: #333333;
+  padding: 0.4rem;
+  border: 1px solid #333333;
+}
+
+.user-card .face.face2 .card-content a:hover {
+  background: #333333;
+  color: #fff;
+}
+
+.user-card:hover .face.face1 .card-content {
+  opacity: 1;
+}
+
+.user-card:hover .face.face2 .card-content {
+  background: #fff;
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+  -webkit-box-shadow: 0px .3rem .5rem 0px #333333;
+          box-shadow: 0px .3rem .5rem 0px #333333;
+  width: 100%;
+  padding: 0.5rem 0.5rem;
+  text-align: center;
+  z-index: 11;
+}
+
+.card-title {
+  position: relative;
+}
+
+.card-title .toolbox {
+  position: absolute;
+  right: 1rem;
+  top: 0;
+}
+
+.card {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.card:hover {
+  background: var(--bleu-3);
+}
+
+.bg-cofident {
+  width: 100%;
+  background: url(../img/background-00.jpg) no-repeat center;
+  background-size: cover;
+  height: 300px;
+  position: relative;
+}
+
+.bg-cofident img {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  position: absolute;
+  left: 2rem;
+  bottom: -2rem;
+}
+/*# sourceMappingURL=custom.css.map */

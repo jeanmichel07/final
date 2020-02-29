@@ -1,0 +1,75 @@
+{% extends 'front.html.twig' %}
+
+{% block body %}
+    <body>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/assets/images/temoignage/14.jpg" class="d-block w-100" alt="">
+                <div class="carousel-caption d-none d-md-block"
+                     style="bottom: 270px;
+                    text-align: center;">
+                    <div>
+                        <h4 style="color: #ffffff;
+                     font-weight: bold;
+                     font-family:Raleway Heavy;
+                     font-size: 40px">
+                            Ils parlent de leur expérience avec Corban
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="background-color: #fff;padding: 80px 20px;">
+        <div class="container">
+            <div class="row" style="color: #222222;text-align: center;">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h2 data-aos="fade-right" data-aos-duration="800" style="color: #222222;
+                          text-align: center;
+                          font-family: 'Raleway', sans-serif;
+                          font-weight: bold;
+                          padding-bottom: 10px;
+                          font-size: 45px;
+                          text-align:center;">
+                        Témoignage
+                    </h2>
+                    <p data-aos="fade-left" data-aos-duration="900" style="font-family:arimo; text-align: center">Ecoutez ce que nos clients pensent de Corban.<br>
+                        Quand vous êtes prêt, contactez-nous <br>
+                        Email: rija.rajemisa@corbanconsulting.mg<br>
+                        Téléphone: +261 32 57 679 19 / +261 34 41 822 14<br>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="container-fluid" style="background-color:  #f5f5f5;padding: 80px 20px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h2 data-aos="fade-right" data-aos-duration="800" style="color: #222222;
+                          text-align: center;
+                          font-family: 'Raleway', sans-serif;
+                          font-weight: bold;
+                          padding-bottom: 70px;
+                          font-size: 45px;">Tous les Témoignages</h2>
+                </div>
+            </div>
+
+            {# EXEMPLE 2 #}
+
+            <div class="row" id="temoin" style="text-align: center;">
+                {% if temoignages|length != 0 %}
+                    {% for t in temoignages %}
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"><div style="background-color: #2d2d2c; width: 100%; text-align: center"><a href="{{ path('show_temoignage',{id: t.id}) }}"><video poster="/assets/img/video1.png" src="{{ t.video }}" width="100%" height="300px"></video><p style="color:#fff;background-color:#ffbd59;padding-bottom:10px;padding-top:10px;font-size:20px;"><strong>{{ t.client.nom }}</strong></p></a></div></div>
+                    {% endfor %}
+                {% else  %}
+                <p>Aucun temoignage pour l'instant</p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

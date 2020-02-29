@@ -1,0 +1,96 @@
+{% extends 'front.html.twig' %}
+
+{% block style %}
+    <style>
+        .btn-5{
+            border-radius: none;
+            padding: 10px 80px;
+            color: #545454;
+            font-family:'Arimo', sans-serif;
+            font-weight: bold;
+            background: linear-gradient(#ffde59,#ffbd59,#ff914d);
+            border:none;
+        }
+        .btn-5:hover{
+            border-radius: none;
+            padding: 10px 80px;
+            color: #ffde59;
+            font-family:'Arimo', sans-serif;
+            font-weight: bold;
+            background: #545454;
+            border:2px solid #ffde59;"
+        }
+        .btn-6{
+            border-radius:50px;
+            padding: 8px 40px;
+            color: #ffffff;
+            font-family:'Raleway', sans-serif;
+            font-weight: bold;
+            background: linear-gradient(#00b7ff,#3d5a98,#00b7ff);
+            border:none;
+        }
+        .btn-6:hover{
+            border-radius:50px;
+            padding: 8px 40px;
+            color: #3d5a98;
+            font-family:'Raleway', sans-serif;
+            font-weight: bold;
+            background: #ffffff;
+            border:2px solid #3d5a98;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="assets/images/offre/14.jpg" class="d-block w-100" alt="">
+                <div class="carousel-caption d-none d-md-block" style="bottom: 270px;text-align: center;">
+                    <div>
+                        <h4 style="color: #fff;
+      						   font-weight: bold;
+      						   font-family: 'Raleway', sans-serif;
+      						   margin-left: 150px;
+      						   font-size: 60px">Toutes nos offres d'emploi
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="background-color: #f7f7f7;padding: 80px 20px;">
+        <div class="container">
+            <div class="row" id="main" >
+                {% if offre|length != 0 %}
+                    {% for o in offre %}
+                            <div class="col-md-3 padding-top-bottom" style="padding:10px 10px; height: 230px; border-radius: 5px; margin-top: 8px; border: white solid 2px; color: #fff">
+                                <div>
+                                    <div style="background-image: url('/offre/{{ o.image }}') ; background-size: cover; border-radius: 5px">
+                                        <p class="d-none d-md-block" style="color: white; font-family: Raleway, sans-serif; font-weight: bold; background: rgba(192,192,192,0.6); position: relative; top: 0; left: 0; right: 0;text-align: center">
+                                            Corban Performance Consulting
+                                        </p><br><br>
+                                        <h2 style="color: #fff; font-size: 16px; text-align: center">
+                                            {{ o.titre }}
+                                        </h2>
+                                        <p style="color: #fff; text-align: center; font-size: 12px">Pour&nbsp;{{ o.client }}<br><br><a class="btn-sm btn-info" href="{{ path('show_offre',{id: o.id}) }}" style="color:#fff;">Détails</a> </p><br>
+                                    </div>
+                                </div>
+                            </div>
+
+                    {% endfor %}
+                {% else  %}
+                    <p>Aucun offres pour l'instant</p>
+                {% endif %}
+
+            </div>
+            <div class="row" style="margin-top: 50px;">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center;">
+                    <a href="#"><button type="button" class="btn-5" >VOIR PLUS</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

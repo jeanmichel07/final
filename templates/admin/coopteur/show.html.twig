@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <br>
+
+    <div class="container">
+        <img width="260px" height="200px" src="/coopteur/{{ coopteur.photo }}">        <h2><b>{{ coopteur.nom }}</b></h2>
+        <br>
+        <table class="table">
+            <tr><th>Pays :</th><td>{{ coopteur.pays }}</td></tr>
+            <tr><th>Ville :</th><td>{{ coopteur.ville }}</td></tr>
+            <tr><th>Email :</th><td>{{ coopteur.email }}</td></tr>
+            <tr><th>Telephone :</th><td>{{ coopteur.telephone }}</td></tr>
+            <tr><th>Adresse :</th><td>{{ coopteur.adresse }}</td></tr>
+        </table>
+
+        <a href="javascript:history.back()" class="btn btn-warning">Retour</a>
+    </div>
+
+{% endblock %}

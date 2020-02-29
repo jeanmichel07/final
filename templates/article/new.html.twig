@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>Ajout un Article</h2>
+
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-md-6">{{ form_row(form.titre) }}</div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_widget(form.image) }}
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            {{ form_row(form.contenu) }}
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_widget(form.lien) }}
+        </div>
+    </div>
+    {{ form_widget(form.save) }}
+    {{ form_end(form) }}
+
+{% endblock %}
+{% block javascripts %}
+    <script>
+        window.onload = function () {
+            if (window.File && window.FileList && window.FileReader) {
+                var filesInput = document.getElementById("form_image");
+                filesInput.addEventListener("change", function (event) {
+                    var files = event.target.files;
+                    var output = document.getElementById("result");
+                    for (var i = 0; i < files.length; i++) {
+                        var file = files[i];
+                        if (!file.type.match('image'))
+                            continue;
+                        var picReader = new FileReader();
+                        picReader.addEventListener("load", function (event) {
+                            var picFile = event.target;
+                            var div = document.createElement("div");
+                            div.innerHTML = "<img class='img img-thumbnail' src='" + picFile.result + "'" +
+                                    "title='" + picFile.name + "'/>";
+                            output.insertBefore(div, null);
+                        });
+                        picReader.readAsDataURL(file);
+                    }
+                });
+            }
+        }
+    </script>
+{% endblock %}

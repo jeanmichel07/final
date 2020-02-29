@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+   <div class="container">
+      <h2>Témoignage de {{ client.nom }}</h2>
+      <table class="table table-striped">
+         <a href="{{ path('ajout_temoin',{id:id}) }}" class="text-left">
+            <div class="btn btn-primary">Ajouter Temoignage</div>
+         </a>
+         <thead>
+         <tr>
+            <th>Titre</th>
+         </tr>
+         </thead>
+         <tbody>
+         {% for t in tem %}
+            <tr>
+               <td>{{ t.titre }}</td>
+               <td>
+                  <a href="{{ path('lire_temoignage',{id:t.id}) }}" class="btn btn-outline-primary">Voir</a>
+                  <a href="#" onclick="deleteTem({{ t.id }})" class="btn btn-outline-danger">Supprimer</a>
+               </td>
+            </tr>
+         {% endfor %}
+         </tbody>
+      </table>
+   </div>
+   <script>
+      function deleteTem(id) {
+         if(confirm("Voulez vous vraiment supprimer cette Enregistrement ?")){
+            window.location='/delete/temoignage/'+id;
+            console.log("ok")
+         }
+         else{
+            alert("L'enregistrement n'a pas été supprimé.")
+         }
+      }
+   </script>
+{% endblock %}
+

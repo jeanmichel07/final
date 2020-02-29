@@ -1,0 +1,69 @@
+{% extends 'front.html.twig' %}
+{% block title %}Inscription Coopteur{% endblock %}
+    {% block style %}
+        <style>
+            .cont{
+                width: 75%;
+                text-align: left;
+                background-color: rgba(192,192,192,0.6);
+                padding-left: 15px;
+                padding-right: 15px;
+                font-weight: bold;
+                color: white;
+
+            }
+        </style>
+    {% endblock %}
+{% block body %}
+    <div class="container-fluid" style="padding-top: 4%; padding-bottom: 5%; background-image: url(/assets/images/accueil/4.jpg); background-size: cover">
+        <center>
+        <div class="cont">
+
+        <h1 style="text-align: center">Inscription coopteur</h1>
+        {{ form_start(form) }}
+
+        <div class="row" >
+            <div class="col-md-12" >{{ form_row(form.photo,{'attr':{'class':'btn btn-primary' , 'placeholder':'Votre Photo'}}) }}</div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6" >  {{ form_row(form.nom,{'attr':{'id':'text' , 'placeholder' : 'Votre Nom'}  } ) }}</div>
+            <div class="col-md-6">   {{ form_row(form.telephone,{'attr':{'placeholder' : 'Votre Numero de telephone '}  }) }}</div>
+
+        </div>
+         <div class="row">
+             <div class="col-md-6">  {{ form_row(form.adresse,{'attr':{'placeholder' : 'Votre adresse'}  }) }}</div>
+             <div class="col-md-6">  {{ form_row(form.email,{'attr':{'placeholder' : 'Votre E-mail'}  }) }}</div>
+
+         </div>
+        <div class="row">
+            <div class="col-md-6">  {{ form_row(form.entreprise ,{'attr':{'placeholder' : 'Votre Entreprise'}  }) }}</div>
+            <div class="col-md-6">  {{ form_row(form.pays ,{'attr':{'placeholder' : 'Votre Pays'}  }) }}</div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6">  {{ form_row(form.ville,{'attr':{'placeholder' : 'Votre Ville'}  }) }}</div>
+            <div class="col-md-6">   {{ form_row(form.username,{'attr':{'placeholder' : 'Votre Pseudo'}  }) }} </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6">   {{ form_row(form.password,{'attr':{'placeholder' : 'Mot de passe'}  }) }}</div>
+            <div class="col-md-6">   {{ form_row(form.confirmpassword,{'attr':{'placeholder' : 'Confirmer votre mot de passe'}  }) }}</div>
+        </div>
+                <center>
+                    <input type="submit" class="btn btn-primary" style="width: 50%; font-size: 60%; height: 40px" value="S'INSCRIRE">
+                </center>
+                {{ form_end(form) }}
+            <br><br>
+        </div>
+        </center>
+    </div>
+
+
+
+
+
+{% endblock %}
+

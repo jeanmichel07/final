@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offre d'emplois!{% endblock %}
+{% block stylesheets %}
+{% endblock %}
+{% block body %}
+    <h2>
+        {{ 'Pour quelle responsable de '~client.nom }}
+    </h2>
+    {{ form_start(form) }}
+    {{ form_row(form.responsable) }}
+    <input type="submit" value="Valider" class="btn btn-primary">
+    {{ form_end(form) }}
+{% endblock %}
+{% block javascripts %}
+{% endblock %}

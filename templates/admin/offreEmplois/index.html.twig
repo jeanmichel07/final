@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offre d'emplois!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h3>Les offres d'emplois</h3>
+        <table class="table table-striped">
+            <a href="{{ path('offre_emplois_new') }}" class="text-left">
+                <div class="btn btn-primary">Ajouter offre</div>
+            </a>
+            <thead>
+            <tr>
+                <th><b>Recruteur</b></th>
+                <th><b>POSTE</b></th>
+                <th><b>Statu</b></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for o in offreEmplois %}
+                <tr>
+                    <td>{{ o.client.nom }}</td>
+                    <td>{{ o.titre }}</td>
+                    <td>{{ o.etat|upper }}</td>
+                    <td>
+                        <a href="{{ path('offre_emplois_show', { id: o.id }) }}" class="btn btn-info">Voir</a>
+                        <a href="{{ path('offre_emplois_edit', { id: o.id }) }}" class="btn btn-default">Modifier</a>
+
+                        <a href="{{ path('liste_candidature',{id:o.id}) }}" class="btn btn-outline-primary">Candidature</a>
+                        <a href="{{ path('liste_cooptation',{id:o.id}) }}" class="btn btn-outline-secondary">Cooptation</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function deleteOffre(id) {
+            if(confirm("Voulez vous vraiment supprimer cette Enregistrement ?")){
+                window.location='/delete/offre/'+id;
+                console.log("ok")
+            }
+            else{
+                alert("L'enregistrement n'a pas été supprimé.")
+            }
+        }
+    </script>
+
+{% endblock %}

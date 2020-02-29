@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>Modifier  Ressource Image</h2>
+
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-md-6">{{ form_row(form.type) }}</div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-6">{{ form_row(form.titre) }}</div>
+
+    </div>
+
+    {{ form_widget(form) }}
+    <button class="btn btn-success">Modifier</button>
+    {{ form_end(form) }}
+
+{% endblock %}

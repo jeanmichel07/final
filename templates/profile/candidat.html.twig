@@ -1,0 +1,188 @@
+{% extends 'front.html.twig' %}
+{% block style %}
+    <style>
+        .head{
+            background-color: #cb8402;
+            height: 9em;
+            padding-top: 5.5%;
+            position: relative;
+        }
+        .img{
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .parcour{
+            float: right;
+            margin-left: 75%;
+
+
+        }
+        .infos
+        {
+
+            width: 100%;
+            height: 100px;
+            z-index: 999999 !important;
+            padding-left: 19px;
+            padding-right: 12px;
+            padding-top: 13px;
+
+        }
+
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="container" style=" background-color: rgba(192,192,192,0.2);">
+        <div class="head">
+            {% set img = (app.user.photo == null)? '/user/user.jpg' : '/candidat/' ~ app.user.photo %}
+            <center>
+                <div class="img">
+                    <img src="{{ img }}" width="10%" style="border: #9A9A9A solid 2px; border-radius: 100px"><br>
+                </div>
+            </center>
+        </div>
+        <div class="infos" style="background-color: #ffffff">
+            <div class="row">
+                <b><span class="nom">{{ app.user.nom }}<br><br><a href="#" style="font-size: 12px; color: #9C9C9C">CV Personalisee</a></span></b>
+                <div class="parcour">
+                    {% if app.user.parcours|length > 0 %}
+                        {% set parcour=app.user.parcours.last %}
+                        <h4>{{ parcour.poste }}</h4>
+                        {{ 'Chez '~parcour.entreprise }}<br>
+                        {{ parcour.lieu }}<br>
+                    {% else %}
+                        <a href="{{ path('newParcours') }}">Ajouter plus d’experience</a>
+                    {% endif %}
+                </div>
+            </div>
+
+
+        </div>
+        <div class="container">
+            <div class="row" >
+
+                <div class="col-md-8" style="margin-top:1%;  background-color: #ffffff; padding-top: 1%">
+                    <h3>A propos de {{ app.user.nom }}</h3>
+                    {% if about == null %}
+                        <p><a href="{{ path('new_about') }}" style="font-size: 12px; color: #9C9C9C">Ajouter Apropos de vous</a></p>
+                    {% else %}
+                        <p>{{ about.contenu }}</p>
+                    {% endif %}
+                </div>
+                <div class= "col-md-4" style="background-color: #ffffff; margin-top: 1%;padding-top: 1%">
+
+                    <h3>Contact</h3>
+                    <p>E-mail : {{ app.user.email }}</p>
+                    <p>Telephone : {{ app.user.telephone }}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8" style="margin-top: 1%; background-color: #ffffff;padding-top: 1%">
+                    <h3>Expérience</h3><hr>
+                    {% for p in app.user.parcours|reverse %}
+                        <div class="row">
+                            <div class="col-8 ex">
+                                {{ p.poste }}{{ ' chez '~p.entreprise }}<br>
+                                <em style="color: #9A9A9A;">{{ p.lieu }}</em><br>
+                            </div>
+                            <div class="col-4">
+                                {{ p.debut|date('m/Y') }}{{ ' - '~p.fin|date('m/Y') }}<br>
+                            </div>
+                        </div><br>
+                    {% endfor %}
+                    <a href="{{ path('newParcours') }}">Ajouter plus d’experience</a><br><br><hr>
+                </div>
+                <div class="col-md-4" style="background-color: #ffffff; margin-top: 1%; padding-top: 1%">
+                    <h3>Mon CV Video</h3><br>
+                    {% if video == null %}
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                            Infos CV Videos
+                        </button>
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Vous voulez avoir une CV video</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body" style="text-align: left">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        {% for v in video|slice(1) %}
+                            {% if v.type == 'CV' %}
+                                <iframe src="{{ v.video }}" width="100%"></iframe>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8" style="margin-top: 1%; background-color: #ffffff; padding-top: 1%">
+                    <h3>Formation</h3><hr>
+                    {% for p in app.user.formations|reverse %}
+                        <div class="row">
+                            <div class="col-8 ex">
+                                {{ p.diplome }}{{ ' en '~p.filier }}<br>
+                                <em style="color: #9A9A9A;">{{ p.university }}</em><br>
+                            </div>
+                            <div class="col-4">
+                                {{ p.debut|date('m/Y') }}{{ ' - '~p.fin|date('m/Y') }}<br>
+                            </div>
+                        </div><br>
+                    {% endfor %}
+                    <a href="{{ path('new_formation') }}">Ajouter plus de formation</a><br><br><hr>
+                </div>
+                <div class="col-md-4" style="background-color: #ffffff; margin-top: 1%; padding-top: 1%">
+                    <h3>Entretien Différé</h3>
+                    {% if video == null %}
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                            Infos CV Videos
+                        </button>
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Vous voulez avoir une CV video</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body" style="text-align: left">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        {% for v in video|slice(1) %}
+                            {% if v.type == 'Entretient' %}
+                                <iframe src="{{ v.video }}" width="100%"></iframe>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+
+
+{% endblock %}

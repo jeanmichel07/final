@@ -1,0 +1,461 @@
+{% extends'front.html.twig' %}
+
+{% block style %}
+    <style>
+        .filter-button
+        {
+            font-size: 18px;
+            border: 1px solid #42B32F;
+            border-radius: 5px;
+            text-align: center;
+            color: #42B32F;
+            margin-bottom: 30px;
+
+        }
+        .filter-button:hover
+        {
+            font-size: 18px;
+            border: 1px solid #42B32F;
+            border-radius: 5px;
+            text-align: center;
+            color: #ffffff;
+            background-color: #42B32F;
+
+        }
+        .btn-default:active .filter-button:active
+        {
+            background-color: #42B32F;
+            color: white;
+        }
+
+        .port-image
+        {
+            width: 100%;
+        }
+        /* Slider */
+        .slick-slide {
+            margin: 0px 20px;
+        }
+
+        .slick-slide img {
+            width: 100%;
+        }
+
+        .slick-slider
+        {
+            position: relative;
+
+            display: block;
+            box-sizing: border-box;
+
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+            -webkit-touch-callout: none;
+            -khtml-user-select: none;
+            -ms-touch-action: pan-y;
+            touch-action: pan-y;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .slick-list
+        {
+            position: relative;
+
+            display: block;
+            overflow: hidden;
+
+            margin: 0;
+            padding: 0;
+        }
+        .slick-list:focus
+        {
+            outline: none;
+        }
+        .slick-list.dragging
+        {
+            cursor: pointer;
+            cursor: hand;
+        }
+
+        .slick-slider .slick-track,
+        .slick-slider .slick-list
+        {
+            -webkit-transform: translate3d(0, 0, 0);
+            -moz-transform: translate3d(0, 0, 0);
+            -ms-transform: translate3d(0, 0, 0);
+            -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
+
+        .slick-track
+        {
+            position: relative;
+            top: 0;
+            left: 0;
+
+            display: block;
+        }
+        .slick-track:before,
+        .slick-track:after
+        {
+            display: table;
+
+            content: '';
+        }
+        .slick-track:after
+        {
+            clear: both;
+        }
+        .slick-loading .slick-track
+        {
+            visibility: hidden;
+        }
+
+        .slick-slide
+        {
+            display: none;
+            float: left;
+
+            height: 100%;
+            min-height: 1px;
+        }
+        [dir='rtl'] .slick-slide
+        {
+            float: right;
+        }
+        .slick-slide img
+        {
+            display: block;
+        }
+        .slick-slide.slick-loading img
+        {
+            display: none;
+        }
+        .slick-slide.dragging img
+        {
+            pointer-events: none;
+        }
+        .slick-initialized .slick-slide
+        {
+            display: block;
+        }
+        .slick-loading .slick-slide
+        {
+            visibility: hidden;
+        }
+        .slick-vertical .slick-slide
+        {
+            display: block;
+
+            height: auto;
+
+            border: 1px solid transparent;
+        }
+        .slick-arrow.slick-hidden {
+            display: none;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="4" class="active"></li>
+        </ol>
+
+        <div class="carousel-inner">
+            {% for c in accueil %}
+                {% set active= (c.id == 1)? 'active':'' %}
+            <div class="carousel-item {{ active }}">
+                <img src="/home/{{ c.image }}" class="d-block w-100" alt="">
+                <div class="carousel-caption d-none d-md-block">
+                    <div style="margin:0px 300px 0px 0px;">
+                        <h5 style="font-family: Raleway; padding: 2px 0px 20px 0px;">{{ c.title }}</h5>
+                        <p style="font-size: 20px; padding: 2px 0px 8px 0px;">Marc Bennioff</p>
+                                                <p style="font-family: 'Raleway', sans-serif;
+                                                        font-size: 16px;
+                                                        line-height: 0.5cm;
+                                                        padding: 2px 0px 20px 0px;">
+                                                    {{ c.description }}
+                                                </p>
+                                                <div style="padding-bottom: 100px;">
+{#                                                    <a href="index.php?page=contact">#}
+{#                                                        <button type="button" class="btn-1">Demander une offre#}
+{#                                                        </button>#}
+{#                                                    </a>#}
+                                                </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        <a class="carousel-control-prev"
+           href="#carouselExampleIndicators"
+           role="button"
+           data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next"
+           href="#carouselExampleIndicators"
+           role="button"
+           data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <section class="container-fluid" style="background: linear-gradient(#ffde59,#ffde59);
+										padding: 80px 20px;">
+        <div class="container">
+            <div class="row" style="margin-bottom: 50px;margin-top: 10px">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h2 style="color: #545454;
+						   font-weight: bold;
+						   text-align: center;">CORBAN en quelques chiffres
+                    </h2>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-3">
+                    <div class="stat-items">
+                        <h2 style="font-weight: bold;
+						   font-family: 'Lora', serif;
+						   color: #ffffff;
+						   font-size: 35px"><span class="counter text">12000</span> <span>+</span></h2>
+                        <p style="color: #9A9A9A;font-weight: bold; font-family: 'Arimo', sans-serif; font-size: 15px;">
+                            followers sur <br>LinkedIn
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-items">
+                        <h2 style="font-weight: bold;
+						   font-family: 'Lora', serif;
+						   color: #ffffff;
+						   font-size: 35px"><span class="counter text">9000</span> <span>+</span></h2>
+                        <p style="color: #9A9A9A;font-weight: bold;
+						  font-family: 'Arimo', sans-serif; font-size: 15px;">
+                            followers sur<br> Facebook
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-items">
+                        <h2 style="font-weight: bold;
+						   font-family: 'Lora', serif;
+						   color: #ffffff;
+						   font-size: 35px"><span class="counter text">7</span></h2>
+                        <p style="color: #9A9A9A;font-weight: bold;
+						  font-family: 'Arimo', sans-serif; font-size: 15px;">
+                            années<br> d'expérience
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-items">
+                        <h2 style="font-weight: bold;
+						   font-family: 'Lora', serif;
+						   color: #ffffff;
+						   font-size: 35px"><span class="counter text">7000</span> <span>+</span></h2>
+                        <p style="color: #9A9A9A;font-weight: bold;
+				          font-family: 'Arimo', sans-serif; font-size: 15px;">
+                            CV dans notre<br> base de données
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <script>
+            $('.counter').counterUp({
+                delay: 10,
+                time: 2000
+            });
+            $('.counter').addClass('animated fadeInDownBig');
+            $('h3').addClass('animated fadeIn');
+        </script>
+        <br>
+
+
+            <center><p class="col-sm-12 col-xs-12" style="color: #C79F4B;
+              font-weight: bold;
+              font-size: 34px;
+              font-family: 'Raleway', sans-serif;">
+                    ILS NOUS FONT CONFIANCE :
+                </p></center>
+
+        <hr>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
+        <div style="background: #fff">
+            <div class="customer-logos">
+                <div class="slide"><img  height="200px" src="assets/images/partenaire/ACEP.png"></div>
+                <div class="slide" style="margin-top:50px;"><img  src="assets/images/partenaire/AFI.png"></div>
+                <div class="slide" style="margin-top:80px;"><img  src="assets/images/partenaire/ASISTEN.png"></div>
+                <div class="slide" style="margin-top:50px;"><img  src="assets/images/partenaire/AXIAN.png"></div>
+                <div class="slide" style="margin-top:65px;"><img  src="assets/images/partenaire/TITANIUM.png"></div>
+                <div class="slide" style="margin-top: 10px"><img  height="180px" src="assets/images/partenaire/BMOI.png"></div>
+                <div class="slide" style="margin-top:80px;"><img  src="assets/images/partenaire/BNI.png"></div>
+                <div class="slide" style="margin-top: 10px" ><img height="180px"  src="assets/images/partenaire/carlton.png"></div>
+                <div class="slide" style="margin-top:45px;"><img  src="assets/images/partenaire/CMA CGM.png"></div>
+                <div class="slide" style="margin-top:60px;"><img  src="assets/images/partenaire/E2F.png"></div>
+                <div class="slide"  style="margin-top:45px;"><img  src="assets/images/partenaire/EDBM.png"></div>
+                <div class="slide" style=" margin-top:45px;"><img  src="assets/images/partenaire/Holcim.png"></div>
+                <div class="slide" style=" margin-top:40px;"><img  src="assets/images/partenaire/STAR.png"></div>
+                <div class="slide" style="margin-top:45px;"><img  src="assets/images/partenaire/VIVETIC.png"></div>
+                <div class="slide" style=" margin-top:40px;"><img  src="assets/images/partenaire/VIVO.png"></div>
+            </div>
+        </div><hr>    
+        <script>
+            $('.customer-logos').slick({
+                slidesToShow: 6,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 1000,
+                arrows: false,
+                dots: false,
+                pauseOnHover: false,
+                responsive: [{
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 4
+                    }
+                }, {
+                    breakpoint: 520,
+                    settings: {
+                        slidesToShow: 3
+                    }
+                }]
+            });
+        </script>
+    </section>
+
+    <section class="container-fluid" style="background-color: #f5fafe;padding-top:30px;padding-bottom: 50px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                    <div id="mission" data-aos="fade-right" data-aos-duration="600">
+                        <div class="row" style="padding-top: 70px">
+                            {% for m in mission %}
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div style="background-color: #315b89; width: 100%; text-align: center"><a href=""><iframe src="{{ m.video }}" width="100%" height="400px"></iframe></a></div></div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                    <h2 class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="color: #222222;
+						   font-weight:bold;
+						   font-family: 'Raleway', sans-serif;
+						   text-align: center;
+						   font-size: 35px;
+						   padding-bottom:30px;">Notre mission
+                    </h2>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="color:#444041;
+																  font-family:'Raleway', sans-serif;
+																  text-align: justify;
+																  line-height: 1.8;">
+                        <p data-aos="fade-left" data-aos-duration="600">
+                            Notre mission est d’offrir  des services de conseil de qualité dans les domaines des RH, recrutement, accompagnement et de l’entrepreneuriat.</p>
+                        <p data-aos="fade-left" data-aos-duration="800">
+                            En offrant des prestations de niveau excellent, nous voulons apporter des solutions plus « smater », « faster » et « better » qui impactent de manière significative nos divers clients</p>
+                        <p data-aos="fade-left" data-aos-duration="1000">
+                            Entant une entreprise chrétienne, nous voulons présenter l’évangile du Christ et honorer Notre Dieu par le travail bienfait et des réalisations exceptionnelles
+                            « Corban » is a hebrew word meaning blessing from God and dedicated back to God.</p>
+                        <p data-aos="fade-left" data-aos-duration="1200">
+                            « Performance » communicates our intent to be the go-to problem solver and to help business to be more efficient.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container-fluid" style="background-color:#f7f7f7;padding-top: 80px; padding-bottom: 80px;">
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <div style="padding-bottom: 60px;">
+                <p  style="color: #444041;font-family: arimo">
+                    Ce qu'ils disent de nous
+                </p>
+                <h2  style="font-family: 'Raleway', sans-serif;
+				  font-weight: bold;
+				  color: #444041">TEMOIGNAGE
+                </h2>
+            </div>
+
+        </div>
+
+        <div class="container">
+            <div class="row" style="font-family: 'Raleway', sans-serif;color: #444041">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <p style="font-weight: bold;text-align: center;">
+                        Franck Rakotondrahanta - Cadre Commercial Bancaire
+                    </p>
+                    <div style="text-align: center;">
+                        <img src="assets/images/temoignage/Frank.png" style="max-width: 100%;height: 200px;">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <p  style="text-align: justify;">
+                        Pour un commercial et/ou un manage, le livre INFLUENCE est un must.
+                        Il devra permettre d’améliorer mon efficience et mon efficacité.
+                        Alors, si vous voulez aussi améliorer votre capacité de persuasion de vos clients et prospects, ou améliorer et affiner votre posture managériale, je vous recommande ce livre.
+                        Merci Rija pour l'initiative et le partage.
+                    </p>
+
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <p  style="font-weight: bold; text-align: center;">
+                        Laurie Antonia Rakotomalala - Photographe
+                    </p>
+                    <div  style="text-align: center;">
+                        <img src="assets/images/temoignage/Laurie.png" style="max-width: 100%;height: 200px;">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <p  style="text-align: justify;">
+                        Ce Book Club / network répond à pas mal de questions que je me pose dans ma vie professionnelle.
+                        La partie qui m’a le plus marqué c’est le principe du “donnez” ce que vous vous voulez recevoir….
+                        Merci aux TIPS de Jean Luc (Axian), Gilto (Encor Madagascar) et de Fano (Torio Creatives) sans oublier Rija Rajemisa.
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid" style="background: linear-gradient(#ffde59,#ffbd59);padding-top: 60px;padding-bottom: 60px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div style="text-align: center;font-family:'Raleway', sans-serif; ">
+                        <h2 style="color: #545454;font-size: 40px;"
+                            data-aos="fade-right" data-aos-duration="800">
+                            <strong>Pour plus d'information</strong>
+                        </h2>
+                        <h3 style="color: #fff;padding-top: 20px;"
+                            data-aos="fade-left" data-aos-duration="900">
+                            <strong>CONTACTEZ-NOUS</strong>
+                        </h3>
+                    </div>
+                    <div  style="padding-top: 20px;text-align: center;font-size: 20px;"
+                          data-aos="fade-right" data-aos-duration="1000">
+                        <a href="{{path('contact')}}">
+                            <button type="button" class="btn-2 ">
+                                <strong>CONTACT</strong>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

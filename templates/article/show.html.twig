@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<style>
+		#article_first{
+			-webkit-column-count:2; /* Opera, Safari, Google Chrome */
+			-moz-column-count: 2; /* Firefox */
+			column-count: 2; /* Internet Explorer */
+			-webkit-column-gap: 50px;
+			-moz-column-gap: 50px;
+			column-gap: 50px;
+		}
+	</style>
+
+    {% for art in article %}
+        <h2 class="text-center">{{ art.titre }}</h2>
+        <hr>
+        <div class="text-center">
+            <img src="http://localhost/Corban/application/back/public/uploads/{{ art.image }}" class="img img-thumbnail" width="300" height="150">
+        </div>
+        <div class="text-center">
+            {% set count = art.contenu | length  %}
+            {% set content_first = count/2  %}
+			<div class="row">
+				<div class="col-lg-2"></div>
+				<p class="text-justify col-lg-8" id="article_first" >
+					{{ art.contenu | slice(0, content_first) }}(...) 
+				</p><br>
+				<div class="col-lg-2"></div>
+			</div>
+            <p>
+                <iframe width="420" height="315"
+                        src="{{ art.lien }}">
+                </iframe>
+            </p>
+            <p class="text-justify">
+                
+            </p><br>
+			<div class="row">
+				<div class="col-lg-2"></div>
+				<p class="text-justify col-lg-8" id="article_first" >
+					<b>suite</b> : (...){{ art.contenu | slice(content_first, 50000) }}
+				</p><br>
+				<div class="col-lg-2"></div>
+			</div>
+        </div>
+    {% endfor %}
+{% endblock %}

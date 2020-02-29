@@ -1,0 +1,127 @@
+{% extends 'front.html.twig' %}
+{% block style %}
+    <style>
+        .head{
+         background: linear-gradient(to right, #ffa066 ,#ffe59e);
+            height: 9em;
+            padding-top: 5.5%;
+            position: relative;
+        }
+        .img{
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .parcour
+        {
+            float: right;
+
+        }
+        .infos
+        {
+            width: 100%;
+            height: 100px;
+            z-index: 999999 !important;
+
+            padding-left: 12px;
+            padding-right: 12px;
+            padding-top: 13px;
+        }
+
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="container" style=" background-color: rgba(192,192,192,0.2);">
+        <div class="head">
+            {% set img = (candidat.photo == null)? '/user/user.jpg' : '/candidat/' ~ candidat.photo %}
+            <center>
+                <div class="img">
+                    <img src="{{ img }}" width="10%" style="border: #9A9A9A solid 2px; border-radius: 100px"><br>
+                </div>
+            </center>
+        </div>
+        <div class="infos" style="background-color: #ffffff">
+            <b><span class="nom" style="padding-left: 2%">{{ candidat.nom }}</span></b>
+            <div class="parcour">  {% if candidat.parcours|length > 0 %}
+                    {% set parcour=candidat.parcours.last %}
+                    <h4>{{ parcour.poste }}</h4>
+                    {{ 'Chez '~parcour.entreprise }}<br>
+                    {{ parcour.lieu }}<br>
+
+
+                {% endif %}</div>
+
+        </div>
+        <div class="container">
+        <div class="row" >
+
+                <div class="col-md-8" style="margin-top:1%;  background-color: #ffffff; padding-top: 1%">
+                        <h3>A propos de {{ candidat.nom }}</h3>
+                        <p>{{ about }}</p>
+                </div>
+                <div class= "col-md-4" style="background-color: #ffffff; margin-top: 1%;padding-top: 1%">
+
+                    <h3>Contact</h3>
+                    <p>{{ candidat.email }}</p>
+                    <p>{{ candidat.telephone }}</p>
+                </div>
+            </div>
+
+        <div class="row">
+            <div class="col-md-8" style="margin-top: 1%; background-color: #ffffff;padding-top: 1%">
+                <h3>Expérience</h3><hr>
+                {% if candidat.parcours|length > 0 %}
+                    {% for p in candidat.parcours|reverse %}
+                        <div class="row">
+                            <div class="col-8 ex">
+                                {{ p.poste }}{{ ' chez '~p.entreprise }}<br>
+                                <em style="color: #9A9A9A;">{{ p.lieu }}</em><br>
+                            </div>
+                            <div class="col-4">
+                                {{ p.debut|date('m/Y') }}{{ ' - '~p.fin|date('m/Y') }}<br>
+                            </div>
+                        </div><br>
+                    {% endfor %}
+                {% else %}
+                    <em>
+                        {{ candidat.nom~' n\'a pas encore des parcours ' }}
+                    </em>
+                {% endif %}
+
+            </div>
+            <div class="col-md-4" style="background-color: #ffffff; margin-top: 1%; padding-top: 1%">
+                <h3>CV vidéo</h3>
+
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-md-8" style="margin-top: 1%; background-color: #ffffff; padding-top: 1%">
+                    <h3>Formation</h3><hr>
+                    {% if candidat.formations|length > 0 %}
+                        {% for p in candidat.formations|reverse %}
+                            <div class="row">
+                                <div class="col-8 ex">
+                                    {{ p.diplome }}{{ ' en '~p.filier }}<br>
+                                    <em style="color: #9A9A9A;">{{ p.university }}</em><br>
+                                </div>
+                                <div class="col-4">
+                                    {{ p.debut|date('m/Y') }}{{ ' - '~p.fin|date('m/Y') }}<br>
+                                </div>
+                            </div><br>
+                        {% endfor %}
+                    {% else %}
+                        <em>
+                            {{ candidat.nom~' n\'a pas encore des formations ' }}
+                        </em>
+                    {% endif %}
+                </div>
+                <div class="col-md-4" style="background-color: #ffffff; margin-top: 1%; padding-top: 1%">
+                    <h3>Entretien Différé</h3>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+
+
+{% endblock %}

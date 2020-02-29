@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Les candidats</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Date de naissance</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for c in candidat %}
+                <tr>
+                    <td>{{ c.nom }}</td>
+                    <td>{{ c.dateNaissance | date('d-m-Y' ,"Europe/Paris") }}</td>
+                    <td>
+                        <a href="{{ path('show_candidat', {id: c.id}) }}" class="btn btn-info">Voir</a>
+{#                        <form action="{{ path('delete_candidat', {id: c.id}) }}" method="post" style="display: inline-block" onsubmit="return confirm('Etes vous sur?')" >#}
+{#                            <input type="hidden" name="_method" value="DELETE" >#}
+{#                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ c.id) }}">#}
+{#                            <button class="btn btn-danger">Supprimer</button>#}
+{#                        </form>#}
+{#                        <a href="{{ path('list_temoignage',{id: c.id}) }}" class="btn btn-outline-primary">CV video</a>#}
+                        <a href="{{ path('list_video_candidat',{id: c.id}) }}" class="btn btn-outline-secondary">Vidéos</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

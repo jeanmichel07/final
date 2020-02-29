@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <div>
+            <iframe style="height:400px;width:800px;text-align: center;"  controls src="{{ ressource.video }}">Ici la description alternative</iframe>
+            <h4 style="font-size: 35px;
+        				font-weight: bold;
+        				font-family: raleway;
+        				color: #000;
+        				padding-top: 12px;">Type:&nbsp;{{ ressource.type }}
+            </h4>
+            <h4 style="font-size: 35px;
+        				font-weight: bold;
+        				font-family: raleway;
+        				color: #000;
+        				padding-top: 12px;">Titre:&nbsp;{{ ressource.titre }}
+            </h4>
+            <h4 style="font-size: 35px;
+        				font-weight: bold;
+        				font-family: raleway;
+        				color: #000;
+        				padding-top: 12px;">Description:&nbsp;{{ ressource.description }}
+            </h4>
+            <a href="javascript:history.back()" class="btn btn-warning">Retour</a>
+        </div>
+    </div>
+
+{% endblock %}

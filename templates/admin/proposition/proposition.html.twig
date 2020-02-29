@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offre d'emplois!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h3>Proposition pour le poste de <b>{{ poste }}</b></h3><hr>
+        <a href="{{ path('new_proposition',{id:idOffre}) }}" class="btn btn-primary">Nouvelle proposition</a>
+        <table class="table table-striped">
+
+            <thead>
+            <tr>
+                <th><b>Numero</b></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for p in prop %}
+                <tr>
+                    <td>{{ p.id }}</td>
+                    <td>
+                        <a href="#" class="btn btn-info">Voir</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function deleteOffre(id) {
+            if(confirm("Voulez vous vraiment supprimer cette Enregistrement ?")){
+                window.location='/delete/offre/'+id;
+                console.log("ok")
+            }
+            else{
+                alert("L'enregistrement n'a pas été supprimé.")
+            }
+        }
+    </script>
+
+{% endblock %}

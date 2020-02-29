@@ -1,0 +1,49 @@
+{% extends 'front.html.twig' %}
+
+    {% block title %}Connexion{% endblock %}
+    {% block style %}
+        <style>
+            .cont{
+                background-color: rgba(192,192,192,0.6);
+                margin-left: 25%;
+                margin-right: 22%;
+                font-weight: bold;
+            }
+        </style>
+
+    {% endblock %}
+{% block body %}
+    <div class="container-fluid" style="padding-top:10%; padding-bottom: 5%; background-image: url('/assets/images/apropos/74 1.jpg '); background-size: cover;">
+
+        <div class="cont">
+            <form method="post" action="{{ path('connexion') }}">
+
+                <h1 style="font-size:3vw; text-align: center">Connexion</h1>
+                {% if error %}
+                    <div class="error" style="text-align: center; background-color: rgba(255,30,20,0.4); color: red; font-weight: bold; height: 35px; text-shadow: black 1px 1px; font-size: 19px">
+                        {{ error.messageKey | trans(error.messageData, 'security') }}
+                    </div>
+                    <br>
+                {% endif %}
+                <br>
+
+                <center>
+
+                    <input type="text" name="_username" required placeholder="Votre Pseudo" style="height: 3em; border-radius: 5px; width: 45%; color: #0b0b0b; " value="{{ lastUsername }}" placeholder="Entrer votre Pseudo">
+                    <br><br>
+                    <input required class="input-mini" type="password" name="_password" style="height: 3em; border-radius: 5px; width: 45%;  color: #0b0b0b; " placeholder="Votre mot de passe">
+                    <br><br>
+                    <input class="btn btn-lg btn-primary" style="height: 3.5em; width: 45%" type="submit" name="" value="SE CONNECTER">
+
+                    <p style="padding-bottom: 7px;">Pour vous s'inscrir entant que <b style="color: #f4960e;">Candidat</b> <a href="{{ path('inscription_candidat') }}">cliquer ici</a></p>
+                    <p>Pour vous s'inscrir entant que <b style="color: #f4960e;">Coopteur</b> <a href="{{ path('inscription_coopteur') }}">cliquer ici</a></p><BR><br>
+                </center>
+
+            </form>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+

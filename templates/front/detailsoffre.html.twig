@@ -1,0 +1,68 @@
+{% extends 'front.html.twig' %}
+
+{% block style %}
+<style>
+    .btn-6{
+        border-radius:50px;
+        padding: 8px 40px;
+        color: #ffffff;
+        font-family:'Raleway', sans-serif;
+        font-weight: bold;
+        background: linear-gradient(#00b7ff,#3d5a98,#00b7ff);
+        border:none;
+    }
+    .btn-6:hover{
+        border-radius:50px;
+        padding: 8px 40px;
+        color: #3d5a98;
+        font-family:'Raleway', sans-serif;
+        font-weight: bold;
+        background: #ffffff;
+        border:2px solid #3d5a98;
+    }
+    .detoffre h2{
+        font-weight: bold;
+        font-family: 'Raleway', sans-serif;
+        text-align: left;
+        padding-bottom: 25px;
+        font-size: 28px;
+        padding-top: 25px;
+    }
+    .detoffre p{
+        font-family: 'Arimo', sans-serif;
+        text-align: justify;
+    }
+</style>    
+
+{% endblock %}
+
+{% block body %}
+<section class="container-fluid" style="background:linear-gradient(#ffde59,#ffbd59)">
+        <div class="container">
+            <div class="row"  style="padding-top: 100px;">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 detoffre" id="det">
+                    <br><h2>{{ offre.client.nom|raw }} cherche {{ offre.titre|raw }}</h2><p><strong>Type de contrat :</strong>&nbsp;{{ offre.contrat|raw }}</p><p><strong>Activités :</strong> &nbsp;{{ offre.activite|raw }}</p><p><strong>Mission:</strong><br>{{ offre.mission|raw }}</p><p><strong>Profil:</strong><br>{{ offre.profil|raw }}</p><p><strong>Référence :</strong>&nbsp;{{ offre.reference|raw }}</p>
+
+              
+                    
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style = "padding-top: 15%; padding-bottom: 25px; padding-left: 35px" >
+                <p style = "color: #000;
+                          font-weight: bold;
+                          font-family:\'Raleway\', sans-serif;
+                          text-align: center;
+                          font-size: 30px;"> Postuler avant le <span id = "date" >{{ offre.dateLimite|date('d-m-Y') }}</span>
+                </p >
+                <div style = "text-align: center;" >
+                    {% set url = (app.user|length > 0 and app.user.type.label=='candidat')? 'candidature':'connexion' %}
+                    <a href="{{ path(url,{id:offre.id}) }}" class="btn btn-info" style="color: white; font-weight: bold; border-radius: 30px; width: 35%; font-size: 23px">POSTULER</a>
+
+                    {% set url = (app.user|length > 0 and app.user.type.label=='coopteur')? 'cooptation':'connexion' %}
+                    <a href="{{ path(url,{id:offre.id}) }}" class="btn btn-info" style="color: white; font-weight: bold; border-radius: 30px; width: 35%; font-size: 23px">COOPTER</a>
+                </div >
+            </div >
+            </div >
+        </div>
+    </section>
+                    
+{% endblock %}

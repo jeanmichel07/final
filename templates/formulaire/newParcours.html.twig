@@ -1,0 +1,27 @@
+{% extends 'front.html.twig' %}
+
+{% block style %}
+    <style>
+        .for{
+            width: 50%;
+            padding-top: 80px;
+            text-align: left;
+            padding-bottom: 40px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <center>
+        <div class="for">
+            <h2>Ton nouvelle parcours</h2><hr>
+            {{ form_start(form) }}
+            {{ form_row(form.entreprise) }}
+            {{ form_row(form.poste) }}
+            {{ form_row(form.lieu) }}
+            {{ form_row(form.debut) }}
+            {{ form_row(form.fin) }}
+            <input type="submit" class="btn btn-primary" value="Enregistrer">
+            {{ form_end(form) }}
+        </div>
+    </center>
+{% endblock %}

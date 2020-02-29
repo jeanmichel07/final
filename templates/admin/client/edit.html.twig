@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PosteController!{% endblock %}
+
+{% block body %}
+    <h2>Editer client</h2>
+
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-md-6">{{ form_row(form.nom) }}</div>
+        <div class="col-md-6">{{ form_row(form.adresse) }}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">{{ form_row(form.telephone) }}</div>
+        <div class="col-md-4">{{ form_row(form.email) }}</div>
+        <div class="col-md-4">{{ form_row(form.web) }}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">{{ form_row(form.secteur) }}</div>
+    </div>
+    <button class="btn btn-success">Editer</button>
+    {{ form_end(form) }}
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        
+        <div>
+            <iframe  style="height:400px;width:800px;text-align: center;" src="{{ temoin.video }}"></iframe>
+            <h4 style="font-size: 35px; 
+        				font-weight: bold;
+        				font-family: raleway;
+        				color: #000;
+        				padding-top: 12px;">Type:&nbsp;{{ temoin.type }}&nbsp;Vidéo
+        	</h4>
+
+        	<p style="font-size: 25px;
+        			 font-family: arimo;
+        			 color: #222222;
+        			 font-weight: bold;">Description:&nbsp;
+        			 <strong>{{ temoin.description }}</strong>
+        	</p>
+        	<a href="javascript:history.back()" class="btn btn-warning">Retour</a>
+        </div>
+    </div>
+{% endblock %}
+

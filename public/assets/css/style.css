@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css?family=Arimo:400,700|Lora:400,700|Raleway:400,700|Roboto:400,700&display=swap');
+
+.carousel-item{
+	height: 100vh;
+	min-height: 300px;
+	background: no-repeat center center scroll;
+	-webkit-background-size:cover;
+	background-size: cover;
+}
+.carousel-item img{
+	width: 300px;
+	height: auto;
+}
+.carousel-caption{
+	bottom: 150px;
+	left: 130px;
+}
+.carousel-caption h5{
+	padding: 0px 50px;
+	font-size: 29px;
+	text-transform: uppercase;
+	margin-top: 25px;
+	color: #ffffff;
+	font-family:'Raleway', sans-serif;
+	font-weight: bold;
+	text-align: center;
+	float: right;
+}
+.carousel-caption p{
+	width: 75%;
+	margin: auto;
+	font-size: 10px;
+	line-height: 1.9;
+	color: #ffffff;
+	font-family: 'Raleway', sans-serif;
+}
+.carousel-caption .carousel-caption button{
+	border: none;
+	text-align: center;
+	-webkit-transition-duration: 0.4s;
+  	transition-duration: 0.4s;
+  	cursor: pointer;
+  	font-weight: bold;
+}
+.carousel-caption .carousel-caption button.btn{
+	background-color: #22427C ;
+	color: #fff;
+	border-radius: 25px;
+	font-size: 100px;
+
+}
+.carousel-caption .carousel-caption button.btn-2{
+	background-color:#FF8C00 ;
+	color: #000;
+	border-radius:50px;
+}
+.navbar-light .navbar-brand{
+	color: #fff;
+	font-size: 25px;
+	text-transform:uppercase;
+	font-weight: bold;
+	letter-spacing:2px;
+}
+
+
+footer{
+	background-color: #545454;
+	color: #ffffff;
+	padding: 50px 20px;
+}
+footer h2{
+	font-size: 25px;
+	font-weight: bold;
+}
+footer h3{
+	font-size: 15px;
+	font-weight: bold;
+
+}
+footer h4{
+	font-size: 17px;
+}
+footer p{
+	font-size: 15px;
+}
+footer img{
+	max-width: 100%;
+	height: 40px;
+}
+footer button:hover{
+	background-color: none;
+    color: #1fa055;
+    border:2px solid #1fa055;
+}
+

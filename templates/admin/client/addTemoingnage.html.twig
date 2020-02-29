@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ClientController!{% endblock %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-md-12">{{ form_row(form.titre) }}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">{{ form_row(form.description) }}</div>
+    </div>
+    {{ form_row(form.video) }}
+    <button class="btn btn-success">Ajouter</button>
+    {{ form_end(form) }}
+
+{% endblock %}
